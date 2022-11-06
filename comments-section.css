@@ -1,0 +1,313 @@
+* {
+  marker: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-color: hsl(228deg, 33%, 97%);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body p {
+  font-size: 16px;
+  color: hsl(211deg, 10%, 45%);
+}
+
+.container {
+  width: calc(100% - 25px);
+  top: 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(30px, 1fr));
+  padding-bottom: 240px;
+}
+.container .comment {
+  width: 100%;
+  background-color: hsl(223deg, 19%, 93%);
+  grid-column: 1/span 10;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 32px 32px repeat(8, minmax(16px, 1fr));
+  position: relative;
+  padding: 15px;
+  margin-top: 15px;
+  word-wrap: break-word;
+  background-color: hsl(0deg, 0%, 100%);
+}
+.container .comment .userImg {
+  background-color: transparent;
+  grid-column: span 2;
+  grid-row: span 2;
+  -webkit-clip-path: circle(32px);
+          clip-path: circle(32px);
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: 64px;
+  height: 64px;
+  grid-auto-columns: -webkit-fit-content;
+  grid-auto-columns: fit-content;
+}
+.container .comment .userName {
+  color: hsl(212deg, 24%, 26%);
+  grid-column: 3/span 3;
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+.container .comment .commentDate {
+  color: a;
+  grid-column: -3/span 2;
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .comment .theComment {
+  color: a;
+  grid-column: 1/span 10;
+  grid-row: span 3;
+  border-radius: 5px;
+  background-color: hsl(223deg, 19%, 93%);
+  padding: 15px;
+}
+.container .comment .theComment .taged {
+  color: blue;
+}
+.container .comment .likes {
+  grid-column: -11/span 3;
+  grid-row: span 1;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  margin-top: 5px;
+  background-color: hsl(239deg, 57%, 85%);
+}
+.container .comment .likes img {
+  cursor: pointer;
+  padding: 5px;
+}
+.container .comment .likes span {
+  color: hsl(238deg, 40%, 52%);
+}
+.container .comment .replayBtn {
+  color: hsl(238deg, 40%, 52%);
+  grid-column: -3/span 2;
+  grid-row: span 1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.container .comment .replayBtn:focus {
+  background-color: aqua;
+}
+.container .comment .edit {
+  color: hsl(238deg, 40%, 52%);
+  grid-column: -2/span 2;
+  grid-row: span 1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.container .comment.commentReplay {
+  grid-column-start: 2;
+}
+.container .comment.commentReplay .userName {
+  grid-column-start: 3;
+}
+.container .comment.commentReplay .commentDate {
+  grid-column-start: -3 !important;
+}
+.container .comment.commentReplay .theComment {
+  background-color: hsl(223deg, 19%, 93%);
+  grid-column: span 10;
+}
+.container .comment.commentReplay .aReplay {
+  grid-column-start: -5;
+}
+.container .comment.commentReplay .edit {
+  grid-column: -3/span 2;
+}
+.container .comment.commentReplay::before {
+  content: "";
+  display: block;
+  background-color: hsl(223deg, 19%, 93%);
+  width: 3px;
+  height: 100%;
+  position: absolute;
+  left: -19px;
+  border-radius: 3px;
+}
+
+.delete {
+  color: hsl(357deg, 100%, 86%);
+  grid-column: -8/span 3;
+  grid-row: 6/span 1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.delete:hover {
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.1);
+}
+
+.you {
+  background-color: blue;
+  color: hsl(0deg, 0%, 100%);
+}
+
+.delOverLayer.show {
+  display: grid;
+}
+
+.delOverLayer {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  place-content: center;
+  display: none;
+}
+.delOverLayer .confirmDel {
+  background-color: hsl(0deg, 0%, 100%);
+  width: 300px;
+  height: 200px;
+  border-radius: 15px;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.delOverLayer .confirmDel div {
+  display: flex;
+  justify-content: space-around;
+  padding-block: 15px;
+}
+.delOverLayer .confirmDel .noDeleteBtn,
+.delOverLayer .confirmDel .yesDeleteBtn {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  padding-block: 10px;
+  cursor: pointer;
+  color: hsl(0deg, 0%, 100%);
+}
+.delOverLayer .confirmDel .noDeleteBtn:hover,
+.delOverLayer .confirmDel .yesDeleteBtn:hover {
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.1);
+}
+.delOverLayer .confirmDel .noDeleteBtn {
+  background-color: hsl(211deg, 10%, 45%);
+}
+.delOverLayer .confirmDel .yesDeleteBtn {
+  background-color: hsl(358deg, 79%, 66%);
+}
+
+.userInputSection {
+  position: fixed;
+  width: 100%;
+  height: 220px;
+  bottom: 0;
+  background: white;
+}
+
+.userReplaySection {
+  background-color: hsl(0deg, 0%, 100%);
+  width: 100%;
+  position: relative;
+  height: 220px;
+  -ms-grid-column-span: 10;
+  grid-column: span 10;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+
+.userInputSection .commenting,
+.userReplaySection .commenting {
+  position: relative;
+  width: 80%;
+  height: 110px;
+  padding: 15px;
+  left: 10%;
+  top: 10%;
+  resize: none;
+}
+.userInputSection .profile,
+.userReplaySection .profile {
+  background-color: transparent;
+  grid-column: span 2;
+  grid-row: span 2;
+  -webkit-clip-path: circle(32px);
+          clip-path: circle(32px);
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: 64px;
+  height: 64px;
+  background-color: aqua;
+  width: 64px;
+  height: 64px;
+  bottom: 15px;
+  left: 15px;
+  position: absolute;
+}
+.userInputSection .sendBtn,
+.userReplaySection .sendBtn {
+  background-color: hsl(238deg, 40%, 52%);
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  padding-block: 10px;
+  border: none;
+  cursor: pointer;
+  color: hsl(0deg, 0%, 100%);
+  position: absolute;
+  right: 15px;
+  bottom: 30px;
+  text-align: center;
+}
+.userInputSection .sendBtn:hover,
+.userReplaySection .sendBtn:hover {
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.1);
+}
+
+.theComment.editArea {
+  resize: none;
+  border: none;
+  min-height: 120px;
+}
+.theComment.editArea:focus {
+  border-radius: 0px;
+}/*# sourceMappingURL=comments-section.css.map */
